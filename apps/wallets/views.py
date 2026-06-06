@@ -6,6 +6,7 @@ from apps.wallets.serializers import WalletSerializer
 
 
 class WalletViewSet(ModelViewSet):
+    queryset = Wallet.objects.all()
     serializer_class = WalletSerializer
     permission_classes = [IsAuthenticated]
 
