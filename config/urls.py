@@ -8,5 +8,6 @@ urlpatterns = [
     path("api/auth/login/", TokenObtainPairView.as_view(), name="auth-login"),
     path("api/auth/refresh/", TokenRefreshView.as_view(), name="auth-refresh"),
     path("api/", include("apps.categories.urls")),
+    path("api/", include("apps.wallets.urls")),
     path("api/", include("apps.core.urls")),
 ]
