@@ -4,7 +4,7 @@ API para controle financeiro pessoal desenvolvida com Django, Django REST Framew
 
 ## Status
 
-Base inicial do projeto criada com endpoint de health check.
+MVP inicial da API com autenticacao, categorias, carteiras, transacoes, resumo mensal e documentacao OpenAPI.
 
 ## Stack
 
@@ -15,6 +15,9 @@ Base inicial do projeto criada com endpoint de health check.
 - Docker
 - Docker Compose
 - django-environ
+- django-cors-headers
+- drf-spectacular
+- Simple JWT
 - pytest
 - pytest-django
 
@@ -32,12 +35,26 @@ Suba a API e o banco:
 docker compose -f docker-compose.dev.yml up api
 ```
 
-Se a porta `8000` estiver ocupada, altere `API_PORT` no `.env` e acesse a porta configurada.
-
-Health check:
+Rode as migrations:
 
 ```bash
-curl http://localhost:8000/api/health/
+docker compose -f docker-compose.dev.yml run --rm api python manage.py migrate
+```
+
+Crie seu usuario local:
+
+```bash
+docker compose -f docker-compose.dev.yml run --rm api python manage.py createsuperuser
+```
+
+Se a porta `8000` estiver ocupada, altere `API_PORT` no `.env` e acesse a porta configurada.
+
+## URLs úteis
+
+```txt
+http://localhost:8000/api/health/
+http://localhost:8000/api/docs/
+http://localhost:8000/api/schema/
 ```
 
 ## Testes
